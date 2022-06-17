@@ -1,0 +1,106 @@
+.spusteno {
+  padding-top: 140px;
+}
+.kursKarticaContainer {
+  display: flex;
+  padding: 20px 40px;
+  flex-direction: column;
+  align-items: center !important;
+  text-align: center;
+  color: black !important;
+  border: 1px solid rgb(0, 0, 59);
+  justify-content: space-between;
+  margin-top: 20px;
+  height: 140px;
+  border-radius: 10px;
+  background-color: lightgray;
+}
+.kursKarticaContainer:hover {
+  box-shadow: 0 4px 11px rgb(0, 0, 59);
+}
+.red {
+  display: flex;
+  justify-content: space-between;
+}
+.kolona {
+  flex-basis: 20%;
+}
+.maliPadding {
+  padding-top: 40px !important;
+}
+.ekran {
+  padding: 0 10%;
+  margin-top: 20px;
+  min-height: 90vh;
+}
+.kursNaziv {
+  font-size: 21px;
+  color: rgb(0, 0, 59);
+}
+.kursOpis {
+  font-size: 14px;
+  color: rgb(0, 0, 59);
+  text-decoration: none;
+}
+.kvizDugme {
+  background-color: green !important;
+  height: 40px;
+  color: white !important;
+  font-weight: 600;
+  font-size: 17px !important;
+}
+.fluid {
+  width: 100%;
+}
+.fluid > * {
+  width: 100% !important;
+}
+.marginBotton {
+  margin-bottom: 30px;
+}
+.marginTop {
+  margin-top: 30px;
+}
+.selekotvaniRed > div > div {
+  background-color: lightblue;
+}
+.danger {
+  background-color: rgb(250, 15, 15) !important;
+  color: white !important;
+  font-weight: 600;
+}
+.pitanjeContainer {
+  padding: 50px 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px ridge rgb(0, 0, 59);
+  border-top: 1px ridge rgb(0, 0, 59);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: lightgray;
+}
+.textPitanja {
+  font-size: 21px;
+  font-weight: 600;
+}
+.opcijeTekst {
+  padding: 20px 0;
+  font-size: 19px;
+}
+.odgovor {
+  font-size: 17px;
+}
+.textCentar {
+  text-align: center;
+  font-size: 25px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+.gray {
+  background-color: lightgray;
+}
+.white {
+  background-color: white;
+}
