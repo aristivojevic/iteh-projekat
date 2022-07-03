@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, ButtonToolbar, Container, Content, FlexboxGrid, Form, Panel, Schema } from 'rsuite';
 import { LoginUser } from '../tipovi';
+import styles from '../App.module.css';
+import classNames from 'classnames';
 
 const model = Schema.Model({
   username: Schema.Types.StringType().isRequired(),
@@ -18,12 +20,14 @@ export default function LoginPage(props: Props) {
     password: ''
   });
   return (
-    <div className="show-fake-browser login-page">
+    <div
+      className={classNames(styles['login-page'], 'show-fake-browser')}
+    >
       <Container>
-        <Content className='spusteno'>
+        <Content className={styles.spusteno}>
           <FlexboxGrid justify="center">
             <FlexboxGrid.Item colspan={12}>
-              <Panel className='gray' header={<h3>Login</h3>} bordered>
+              <Panel className={styles.gray} header={<h3>Login</h3>} bordered>
                 <Form
                   formValue={forma}
                   model={model}

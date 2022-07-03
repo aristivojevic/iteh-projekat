@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  reverse_proxy:
+    build: ./client
+    container_name: reverse_proxy
+    restart: always
+    depends_on:
+      - express_api
+    ports:
+      - "3000:80"
+    environment:
+      - SERVER_URL=/api
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./mime.types:/etc/nginx/mime.types
+  express_api:
+    build: ./server
+    container_name: express_api
+    env_file: docker-compose.env
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - db_service
+    ports:
+      - "8080:8080"
+
+  db_service:
+    image: mysql
+    container_name: db_service
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: study
+      TZ: Europe/Belgrade
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_volume:/var/lib/mysql
+
+volumes:
+  db_volume:

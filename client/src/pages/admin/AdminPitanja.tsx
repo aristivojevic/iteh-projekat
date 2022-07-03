@@ -6,6 +6,8 @@ import { vratiKvizove } from '../../servis/kvizServis';
 import { izmeniPitanje, kreirajPitanje, obrisiPitanje, vratiSvaPitanja } from '../../servis/pitanjeServis';
 import { AdminPitanje, Kviz, Opcija } from '../../tipovi';
 import PlusIcon from '@rsuite/icons/Plus';
+import styles from '../../App.module.css';
+import classNames from 'classnames';
 //@ts-ignore
 const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
 
@@ -49,17 +51,17 @@ export default function AdminPitanja() {
   }, [selPitanjeId])
 
   return (
-    <div className='ekran white maliPadding'>
+    <div className={classNames(styles.ekran, styles.maliPadding, styles.white)}>
       <h1 style={{ textAlign: 'center', width: '100%' }} >Spisak pitanja - ADMIN</h1>
 
-      <FlexboxGrid className='maliPadding' justify='space-between'>
+      <FlexboxGrid className={styles.maliPadding} justify='space-between'>
         <FlexboxGrid.Item colspan={14}>
           <Table
             autoHeight
             wordWrap
             rowClassName={rowData => {
               if (rowData?.id === selPitanjeId) {
-                return 'selekotvaniRed';
+                return styles.selekotvaniRed;
               }
               return '';
             }}
@@ -164,7 +166,7 @@ export default function AdminPitanja() {
           >
             <Form.Group>
               <Form.ControlLabel>Kviz</Form.ControlLabel>
-              <Form.Control className='fluid' name="kvizId" accepter={SelectPicker} onSearch={setKvizSearch} data={kvizovi.map(element => {
+              <Form.Control className={styles.fluid} name="kvizId" accepter={SelectPicker} onSearch={setKvizSearch} data={kvizovi.map(element => {
                 return {
                   value: element.id,
                   label: element.naziv
@@ -173,13 +175,13 @@ export default function AdminPitanja() {
             </Form.Group>
             <Form.Group controlId="brojPoena">
               <Form.ControlLabel>Broj poena</Form.ControlLabel>
-              <Form.Control className='fluid' name="brojPoena" />
+              <Form.Control className={styles.fluid} name="brojPoena" />
             </Form.Group>
             <Form.Group>
               <Form.ControlLabel>Tekst pitanja</Form.ControlLabel>
-              <Form.Control className='fluid' name="tekstPitanja" accepter={Textarea} />
+              <Form.Control className={styles.fluid} name="tekstPitanja" accepter={Textarea} />
             </Form.Group>
-            <div className='red'>
+            <div className={styles.red}>
               <h3>Opcije</h3>
               <IconButton appearance='default' type='button' onClick={() => {
                 setFormaPitanje((prev: any) => {
@@ -199,7 +201,7 @@ export default function AdminPitanja() {
             {
               (formaPitanje.opcije || []).map((opcija: Opcija) => {
                 return (
-                  <div className='marginTop red'>
+                  <div className={classNames(styles.marginTop, styles.red)}>
                     <Input value={opcija.naziv} onChange={(val) => {
                       setFormaPitanje((prev: any) => {
                         return {
@@ -247,12 +249,12 @@ export default function AdminPitanja() {
                 )
               })
             }
-            <Button className='marginTop fluid' type='submit' appearance='primary'>Sacuvaj</Button>
+            <Button className={classNames(styles.marginTop, styles.fluid)} type='submit' appearance='primary'>Sacuvaj</Button>
 
           </Form>
           {
             selPitanjeId > 0 && (
-              <Button className='marginTop fluid danger' onClick={async () => {
+              <Button className={classNames(styles.marginTop, styles.fluid, styles.danger)} onClick={async () => {
                 const id = selPitanjeId;
                 await obrisiPitanje(selPitanjeId);
                 setSelPitanjeId(0);

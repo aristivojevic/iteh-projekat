@@ -3,6 +3,8 @@ import { Button, FlexboxGrid, Form, IconButton, Input, Message, Schema, Table, t
 import { kreirajKurs, obrisiKurs, vratiSveKurseve } from '../../servis/kursServis';
 import { Kurs } from '../../tipovi';
 import TrashIcon from '@rsuite/icons/Trash';
+import styles from '../../App.module.css';
+import classNames from 'classnames';
 
 //@ts-ignore
 const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
@@ -20,10 +22,10 @@ export default function AdminKursevi() {
   }, [])
 
   return (
-    <div className='ekran maliPadding white'>
+    <div className={classNames(styles.ekran, styles.maliPadding, styles.white)}>
       <h1 style={{ textAlign: 'center', width: '100%' }} >Spisak kurseva - ADMIN</h1>
 
-      <FlexboxGrid className='maliPadding' justify='space-between'>
+      <FlexboxGrid className={styles.maliPadding} justify='space-between'>
         <FlexboxGrid.Item colspan={15}>
           <Table
             autoHeight

@@ -1,20 +1,31 @@
 import { LoginUser, RegisterUser, User } from '../tipovi'
 import axios from 'axios'
-axios.defaults.withCredentials = true;
-const SERVER_URL = 'https://localhost:8000'
+
 export async function register(user: RegisterUser) {
-  const res = await axios.post(SERVER_URL + '/register', user);
+  const res = await axios.post('/register', user);
+  const token = res.data.token;
+  localStorage.setItem('user-token', token);
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   return res.data as User;
 }
 
 export async function check() {
-  const res = await axios.get(SERVER_URL + '/check');
+  const token = localStorage.getItem('user-token');
+  if (!token) {
+    throw new Error('no token');
+  }
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  const res = await axios.get('/check');
   return res.data;
 }
 export async function login(user: LoginUser) {
-  const res = await axios.post(SERVER_URL + '/login', user);
+  const res = await axios.post('/login', user);
+  const token = res.data.token;
+  localStorage.setItem('user-token', token);
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   return res.data as User;
 }
 export async function logout() {
-  await axios.post(SERVER_URL + '/logout');
+  delete axios.defaults.headers.common['Authorization'];
+  localStorage.removeItem('user-token');
 }

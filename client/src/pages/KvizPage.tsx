@@ -5,6 +5,8 @@ import { submitujKviz, vratiPitanjaIzKviza } from '../servis/kvizServis'
 import PitanjeKartica from '../components/PitanjeKartica';
 import { Button } from 'rsuite';
 import Prompt from '../components/Prompt';
+import styles from '../App.module.css';
+import classNames from 'classnames';
 
 export default function KvizPage() {
   const params = useParams();
@@ -26,7 +28,9 @@ export default function KvizPage() {
     vratiPitanjaIzKviza(id).then(setPitanja);
   }, [])
   return (
-    <div className='ekran maliPadding marginBotton'>
+    <div
+      className={classNames(styles.ekran, styles.maliPadding, styles.marginBotton)}
+    >
       <Prompt
         open={openModal}
         onNo={() => { setOpenModal(false) }}
@@ -39,7 +43,7 @@ export default function KvizPage() {
       />
       {
         brojPoena !== undefined && (
-          <div className='textPitanja'>
+          <div className={styles.textPitanja}>
             Broj poena: {brojPoena}
           </div>
         )
@@ -75,7 +79,9 @@ export default function KvizPage() {
         brojPoena === undefined && (
           <Button onClick={() => {
             setOpenModal(true);
-          }} className='fluid danger marginTop marginBotton'>Submituj kviz</Button>
+          }}
+            className={classNames(styles.fluid, styles.danger, styles.marginTop, styles.marginBotton)}
+          >Submituj kviz</Button>
         )
       }
     </div>

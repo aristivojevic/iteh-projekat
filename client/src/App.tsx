@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Loader } from 'rsuite';
-import './App.css';
 import Navbar from './components/Navbar';
 import AdminKursevi from './pages/admin/AdminKursevi';
 import AdminKvizovi from './pages/admin/AdminKvizovi';
@@ -15,14 +14,17 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import { check, login, logout, register } from './servis/loginServis';
 import { User } from './tipovi';
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = process.env.SERVER_URL || '/api'
 
 function App() {
   const [user, setUser] = useState<User | undefined>(undefined);
   const [loading, setLoading] = useState(true);
   const navigation = useNavigate();
   useEffect(() => {
-    check().then(setUser).catch(() => {
+    check().then(res => {
+
+      setUser(res.data);
+    }).catch(() => {
       navigation('/')
     }).finally(() => {
       setLoading(false)

@@ -8,6 +8,7 @@ export class UserController {
 
 
     public async login(request: Request, response: Response) {
+        console.log('login');
         const userRepository = appDataSource.getRepository(User);
         const user = await userRepository.findOne({
             where: {
@@ -22,7 +23,8 @@ export class UserController {
             return;
         }
         (request as any).user = user;
-        const token = jwt.sign({ id: user.id }, process.env.TOKEN)
+        const token = jwt.sign({ id: user.id }, process.env.TOKEN || 'token123')
+        console.log(token);
         response.json({
             ...user,
             token
@@ -48,7 +50,7 @@ export class UserController {
         const id = insertResult.identifiers[0].id;
         user = await userRepository.findOne(id);
         (request as any).user = user;
-        const token = jwt.sign({ id: user.id }, process.env.TOKEN)
+        const token = jwt.sign({ id: user.id }, process.env.TOKEN || 'token123')
         response.json({
             ...user,
             token

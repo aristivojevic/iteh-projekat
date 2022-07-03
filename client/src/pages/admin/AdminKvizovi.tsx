@@ -6,6 +6,8 @@ import TrashIcon from '@rsuite/icons/Trash';
 import { kreirajKviz, obrisiKviz, vratiKvizove } from '../../servis/kvizServis';
 import { useLocation, useNavigate } from 'react-router';
 import * as qs from 'query-string'
+import styles from '../../App.module.css';
+import classNames from 'classnames';
 //@ts-ignore
 const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
 const model = Schema.Model({
@@ -37,16 +39,16 @@ export default function AdminKvizovi() {
     }))
   }
   return (
-    <div className='ekran white maliPadding'>
+    <div className={classNames(styles.ekran, styles.maliPadding, styles.white)}>
       <h1 style={{ textAlign: 'center', width: '100%' }} >Spisak kvizova - ADMIN</h1>
 
-      <FlexboxGrid className='maliPadding' justify='space-between'>
+      <FlexboxGrid className={styles.maliPadding} justify='space-between'>
         <FlexboxGrid.Item colspan={15}>
           <Input value={urlParsed?.naziv || ''} onChange={(value) => {
             updateSearch({
               naziv: value
             });
-          }} placeholder='Pretrazi' className='marginBotton' />
+          }} placeholder='Pretrazi' className={styles.marginBotton} />
           <Table
             autoHeight
             wordWrap

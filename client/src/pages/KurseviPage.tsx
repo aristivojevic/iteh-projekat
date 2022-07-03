@@ -3,6 +3,8 @@ import KursKartica from '../components/KursKartica';
 import { vratiSveKurseve } from '../servis/kursServis';
 import { Kurs } from '../tipovi';
 import { chunk } from '../util';
+import styles from '../App.module.css';
+import classNames from 'classnames';
 
 export default function KurseviPage() {
 
@@ -13,16 +15,16 @@ export default function KurseviPage() {
   }, [])
 
   return (
-    <div className='maliPadding'>
+    <div className={styles.maliPadding}>
       <h1 style={{ textAlign: 'center', width: '100%' }} >Spisak kurseva</h1>
 
       {
         chunk(kursevi, 4).map(red => {
           return (
-            <div className='red maliPadding ekran'>
+            <div className={classNames(styles.red, styles.ekran, styles.maliPadding)}>
               {
                 red.map(kurs => {
-                  return <div className='kolona'>
+                  return <div className={styles.kolona}>
                     <KursKartica key={kurs.id} kurs={kurs} />
                   </div>
                 })

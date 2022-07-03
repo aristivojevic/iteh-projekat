@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { vratiStatistiku } from '../../servis/kvizServis';
 import { BarChart, CartesianGrid, XAxis, YAxis, Legend, Bar, Tooltip } from 'recharts'
+import styles from '../../App.module.css';
+import classNames from 'classnames';
 interface StatistikaItem {
   idKviza: number,
   nazivKviza: string,
@@ -16,11 +18,13 @@ export default function AdminStatistika() {
     vratiStatistiku().then(setStatistika)
   })
   return (
-    <div className='ekran white maliPadding'>
-      <div className='textCentar'>
+    <div className={classNames(styles.ekran, styles.maliPadding, styles.white)}>
+      <div className={styles.textCentar}>
         Prosecan broj poena po kvizovima
       </div>
-      <div className='center marginTop'>
+      <div
+        className={classNames(styles.center, styles.marginTop)}
+      >
         <BarChart
           width={1200}
           height={800}

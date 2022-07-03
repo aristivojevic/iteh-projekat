@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://localhost",
   "dependencies": {
     "@rsuite/icons": "^1.0.2",
     "@testing-library/jest-dom": "^5.16.2",
@@ -12,6 +13,7 @@
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "axios": "^0.25.0",
+    "classnames": "^2.3.1",
     "query-string": "^7.1.1",
     "reacharts": "^0.4.5",
     "react": "^17.0.2",
