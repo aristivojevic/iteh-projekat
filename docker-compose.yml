@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   reverse_proxy:
@@ -8,22 +8,24 @@ services:
     depends_on:
       - express_api
     ports:
-      - "3000:80"
+      - "80:80"
     environment:
       - SERVER_URL=/api
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./mime.types:/etc/nginx/mime.types
+
   express_api:
     build: ./server
+    command: npm run dev
+    volumes:
+      - ./server:/usr/src/app
     container_name: express_api
     env_file: docker-compose.env
     environment:
       - NODE_ENV=production
     depends_on:
       - db_service
-    ports:
-      - "8080:8080"
 
   db_service:
     image: mysql
